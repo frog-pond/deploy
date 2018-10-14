@@ -11,7 +11,7 @@ services:
       - ./nginx:/etc/nginx:ro
       - ./logs:/var/log/nginx
 
-  carleton:
+  carleton.api:
     image: frogpond/ccc-server:HEAD
     restart: unless-stopped
     environment:
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./.env:/app/.env
 
-  stolaf:
+  stolaf.api:
     image: frogpond/ccc-server:HEAD
     restart: unless-stopped
     environment:
