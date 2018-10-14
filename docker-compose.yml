@@ -1,0 +1,28 @@
+version: '3'
+services:
+  proxy:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./nginx:/etc/nginx:ro
+      - ./logs:/var/log/nginx
+
+  carleton:
+    image: frogpond/ccc-server:HEAD
+    restart: unless-stopped
+    environment:
+      INSTITUTION: carleton-college
+    volumes:
+      - ./.env:/app/.env
+
+  stolaf:
+    image: frogpond/ccc-server:HEAD
+    restart: unless-stopped
+    environment:
+      INSTITUTION: stolaf-college
+    volumes:
+      - ./.env:/app/.env
