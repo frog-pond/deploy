@@ -1,22 +1,23 @@
----
-- name: "Ensure 'imposter' versions of Docker are gone"
+- name: 'Ensure "imposter" versions of Docker are gone'
   dnf:
-  - docker
-  - docker-client
-  - docker-client-latest
-  - docker-common
-  - docker-latest
-  - docker-latest-logrotate
-  - docker-logrotate
-  - docker-selinux
-  - docker-engine-selinux
-  - docker-engine
-  state: absent
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+    state: absent
 
 - name: 'Install Docker prerequisites'
   dnf:
-  - dnf-plugins-core
-  state: latest
+    name:
+      - dnf-plugins-core
+    state: latest
 
 - name: 'Add Docker CE repository'
   yum_repository:
