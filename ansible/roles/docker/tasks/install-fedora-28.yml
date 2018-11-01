@@ -1,0 +1,42 @@
+- name: Ensure "imposter" versions of Docker are gone
+  dnf:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+    state: absent
+
+- name: Install Docker prerequisites
+  dnf:
+    name:
+      - dnf-plugins-core
+    state: latest
+
+- name: Add Docker CE repository
+  yum_repository:
+    name: docker-ce-stable
+    file: docker-ce
+    description: "Docker CE Stable - $basearch"
+    baseurl: "https://download.docker.com/linux/fedora/$releasever/$basearch/stable"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+    state: present
+
+- name: Install Docker CE
+  dnf:
+    name: docker-ce
+    state: present
+
+- name: Enable Docker CE service on startup
+  systemd:
+    name: 'docker'
+    state: started
+    enabled: yes
