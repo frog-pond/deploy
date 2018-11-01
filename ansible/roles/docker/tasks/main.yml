@@ -1,4 +1,4 @@
 ---
-- name: 'Install Docker CE (Fedora 28)'
+- name: Install Docker CE (Fedora 28)
   include: install-fedora-28.yml
   when: ( ansible_distribution == 'Fedora' and ansible_distribution_version == '28' )
