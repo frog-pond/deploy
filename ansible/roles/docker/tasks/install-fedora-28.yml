@@ -23,8 +23,8 @@
   yum_repository:
     name: docker-ce-stable
     file: docker-ce
-    description: "Docker CE Stable - $basearch"
-    baseurl: "https://download.docker.com/linux/fedora/$releasever/$basearch/stable"
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
     enabled: yes
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/fedora/gpg
@@ -37,6 +37,6 @@
 
 - name: Enable Docker CE service on startup
   systemd:
-    name: 'docker'
+    name: docker
     state: started
     enabled: yes
